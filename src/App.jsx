@@ -1,5 +1,11 @@
+import List from "./components/List";
+
 function App() {
-  return <h1>Hello, my dear frend!)</h1>;
+  return (
+    <div className="bg-gray-900 text-gray-200">
+      <List />
+    </div>
+  );
 }
 
 export default App;
