@@ -1,34 +1,30 @@
+import { useState, useEffect } from "react";
+
 function List() {
-  const data = JSON.stringify({});
+  const [data, setData] = useState(null);
 
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch(
+        // `https://api.themoviedb.org/3/find/{external_id}?api_key=cd3490085bf457ce8f5543677eed29c7&language=en-US&external_source=imdb_id`,
+        `https://api.themoviedb.org/4/list/1?api_key=${
+          import.meta.env.VITE_API_KEY
+        }&page=1`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+          },
+        }
+      );
+      // .then((res) => res.json())
+      // .then((result) => {
+      //   setData(result);
+      // });
+    };
+    fetchData();
+  }, []);
 
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-    }
-  });
-
-  xhr.open(
-    "GET",
-    `https://api.themoviedb.org/4/list/{list_id}?page=1&api_key=cd3490085bf457ce8f5543677eed29c7`
-  );
-  // xhr.open(
-  //   "GET",
-  //   `https://api.themoviedb.org/4/list/%7Blist_id%7D?api_key=${
-  //     import.meta.env.VITE_API_KEY
-  //   }&page=1`
-  // );
-
-  xhr.setRequestHeader("content-type", "application/json;charset=utf-8");
-  xhr.setRequestHeader("origin", "https://api.themoviedb.org");
-  xhr.setRequestHeader(
-    "authorization",
-    `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
-  );
-
-  xhr.send(data);
   console.log(data);
 
   return (
