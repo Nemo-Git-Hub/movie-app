@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import requestCreated from "../api/requestCreater";
 
 function List() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    (() => {
+    (async () => {
       // move to a separate module (folder 'api')
-      fetch(
-        // `https://api.themoviedb.org/3/find/{external_id}?api_key=cd3490085bf457ce8f5543677eed29c7&language=en-US&external_source=imdb_id`,
+      const result = await fetch(
         `https://api.themoviedb.org/4/list/1?api_key=${
           import.meta.env.VITE_API_KEY
         }&page=1`,
@@ -17,16 +17,15 @@ function List() {
             Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
           },
         }
-      )
-        // rewrite with async/await
-        .then((res) => res.json())
-        .then((result) => {
-          setList(result);
-        });
+      );
+      const movieList = await result.json();
+      setList(movieList.results);
     })();
   }, []);
 
-  console.log(list);
+  // console.log(list);
+
+  requestCreated();
 
   return <div className="bg-gray-900 text-gray-200"></div>;
 }
