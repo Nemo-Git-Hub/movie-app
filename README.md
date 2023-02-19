@@ -7,7 +7,7 @@
 - [React](https://reactjs.org/)
 - [Redux](https://redux.js.org/)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
-- [React-Router](https://reacttraining.com/react-router/)
+- [React-Router](https://reacttraining.com/react-router/)(https://reactrouter.com/en/main/routers/create-browser-router)
 - [TailwindCSS](https://tailwindcss.com/)
 - [react-hook-form](https://react-hook-form.com/)
 - [react-toastify](https://fkhadra.github.io/react-toastify/introduction)

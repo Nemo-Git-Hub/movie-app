@@ -13,7 +13,7 @@ function List() {
   }, []);
 
   console.log(list);
-
+  // images https://developers.themoviedb.org/3/getting-started/images
   return <div className="bg-gray-900 text-gray-200"></div>;
 }
 
