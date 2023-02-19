@@ -1,31 +1,18 @@
-import { useState, useEffect } from "react";
-import requestCreated from "../api/requestCreater";
+import { useEffect, useState } from "react";
+import fetchMovies from "../api/requests/fetchMovies";
 
 function List() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
     (async () => {
-      // move to a separate module (folder 'api')
-      const result = await fetch(
-        `https://api.themoviedb.org/4/list/1?api_key=${
-          import.meta.env.VITE_API_KEY
-        }&page=1`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
-          },
-        }
-      );
+      const result = await fetchMovies();
       const movieList = await result.json();
       setList(movieList.results);
     })();
   }, []);
 
-  // console.log(list);
-
-  requestCreated();
+  console.log(list);
 
   return <div className="bg-gray-900 text-gray-200"></div>;
 }
