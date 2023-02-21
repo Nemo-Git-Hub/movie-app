@@ -4,11 +4,6 @@ const requestCreator = (endpoint, options) => {
     api_key: import.meta.env.VITE_API_KEY,
   };
 
-  // () => {
-  //   return {};
-  // };
-  // () => ({});
-
   const queryString = Object.entries(newParams)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");

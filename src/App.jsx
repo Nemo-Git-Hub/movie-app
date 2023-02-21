@@ -1,10 +1,18 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import List from "./components/List";
+import Search from "./components/Search";
 
 const App = () => {
   return (
-    <div className="bg-gray-900 text-gray-200">
-      <List />
-    </div>
+    <>
+      <Header />
+      <Search />
+      <div className="">
+        <List />
+      </div>
+      <Footer />
+    </>
   );
 };
 

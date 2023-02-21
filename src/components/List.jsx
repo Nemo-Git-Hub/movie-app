@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchMovies from "../api/requests/fetchMovies";
+import Swiper from "./Swiper";
 
 function List() {
   const [list, setList] = useState([]);
@@ -14,7 +15,17 @@ function List() {
 
   console.log(list);
   // images https://developers.themoviedb.org/3/getting-started/images
-  return <div className="bg-gray-900 text-gray-200"></div>;
+  return (
+    <>
+      <div className="flex justify-center py-7">
+        <div className="container ">
+          <div className="">
+            <Swiper />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default List;
