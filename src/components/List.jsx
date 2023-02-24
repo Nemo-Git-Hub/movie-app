@@ -20,7 +20,7 @@ function List() {
       <div className="flex justify-center py-7">
         <div className="container ">
           <div className="">
-            <Swiper />
+            <Swiper list={list} />
           </div>
         </div>
       </div>
