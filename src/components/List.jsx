@@ -13,7 +13,7 @@ function List() {
     })();
   }, []);
 
-  console.log(list);
+  // console.log(list);
   // images https://developers.themoviedb.org/3/getting-started/images
   return (
     <>

@@ -11,6 +11,11 @@ import "swiper/css/scrollbar";
 import Slide from "./Slide";
 
 export default ({ list }) => {
+  //   const Movie = (list) => {
+  //     list.map((item) => {
+  //       const key = item.id;
+  //     });
+  //   };
   return (
     <Swiper
       // install Swiper modules
@@ -20,68 +25,18 @@ export default ({ list }) => {
       // navigation
       // pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
     >
       <SwiperSlide>
-        <Slide list={list} /> 1
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 2
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 3
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 4
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 5
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 6
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 7
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 8
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 9
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 10
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 1
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 2
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 3
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 4
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 5
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 6
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 7
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 8
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 9
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide /> 10
+        {list.map((movie) => (
+          <Slide
+            key={movie.id}
+            {...movie}
+            title={movie.title}
+            moviePosterImg={movie.poster_path}
+          />
+        ))}
       </SwiperSlide>
     </Swiper>
   );
