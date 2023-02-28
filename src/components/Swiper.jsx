@@ -28,16 +28,16 @@ export default ({ list }) => {
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log("slide change")}
     >
-      <SwiperSlide>
-        {list.map((movie) => (
+      {list.map((movie) => (
+        <SwiperSlide>
           <Slide
             key={movie.id}
             {...movie}
             title={movie.title}
             moviePosterImg={movie.poster_path}
           />
-        ))}
-      </SwiperSlide>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
