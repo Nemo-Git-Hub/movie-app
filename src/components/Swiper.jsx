@@ -1,6 +1,6 @@
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -25,7 +25,7 @@ export default function SwiperMovies({ list }) {
       // onSlideChange={() => console.log("slide change")}
     >
       {list.map((movie) => {
-        // console.log(movie.title);
+        console.log(movie.title);
         return (
           <SwiperSlide
             key={movie.id}
@@ -38,18 +38,18 @@ export default function SwiperMovies({ list }) {
           >
             <>
               <div className="">
-                <a href="#" className="">
+                <Link to={movie.id} className="">
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     title={movie.title}
                     className="imageSlide rounded-3xl max-h-56"
                   />
-                </a>
+                </Link>
 
                 <div className="titleSlide text-base font-bold pt-6 px-2">
-                  <a href="#" className="" title={movie.title}>
+                  <Link to={"#"} className="" title={movie.title}>
                     {movie.title}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </>
