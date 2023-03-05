@@ -5,14 +5,14 @@
 .swiperShadow::after {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 10%;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 0;
   background-image: linear-gradient(
     to left,
-    #ffffff 2%,
-    rgba(255, 255, 255, 0) 7%
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 50%
   );
   z-index: 1;
 }

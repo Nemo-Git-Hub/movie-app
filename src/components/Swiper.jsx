@@ -25,16 +25,16 @@ export default function SwiperMovies({ list }) {
       // onSlideChange={() => console.log("slide change")}
     >
       {list.map((movie) => {
-        const key = movie.id;
-        console.log(movie.title);
+        // console.log(movie.title);
         return (
           <SwiperSlide
-          // {/* <Slide */}
-          // {/* {...movie} */}
-          // {/* movie={movie} */}
-          // title={movie.title}
-          // {/* moviePosterImg={movie.poster_path} */}
-          // {/* /> */}
+            key={movie.id}
+            // {/* <Slide */}
+            // {/* {...movie} */}
+            movie={movie}
+            // title={movie.title}
+            // {/* moviePosterImg={movie.poster_path} */}
+            // {/* /> */}
           >
             <>
               <div className="">
