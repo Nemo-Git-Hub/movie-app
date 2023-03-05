@@ -3,17 +3,17 @@ import Header from "./components/Header";
 import List from "./routes/List";
 import Search from "./components/Search";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorePage from "./routes/error-page";
+import ErrorPage from "./routes/error-page";
 import Movie from "./routes/Movie";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <List />,
-    errorElement: <ErrorePage />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: "/movie.id",
+    path: "/movie/:id",
     element: <Movie />,
   },
 ]);
