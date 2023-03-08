@@ -32,7 +32,11 @@ export default function SwiperMovies({ list }) {
                 </Link>
 
                 <div className="titleSlide text-base font-bold pt-6 px-2">
-                  <Link to={"#"} className="" title={movie.title}>
+                  <Link
+                    to={`/movie/${movie.id}`}
+                    className=""
+                    title={movie.title}
+                  >
                     {movie.title}
                   </Link>
                 </div>
