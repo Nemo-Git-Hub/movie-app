@@ -1,11 +1,13 @@
 import { useLocation } from "react-router-dom";
+// import fetchMovie from "../api/requests/fetchMovie";
 import useMovie from "../hooks/useMovie";
 
 export default function Movie() {
-  const movie = useMovie();
-  console.log(movie);
   const location = useLocation();
   console.log(location);
+  // fetchMovie();
+  const movie = useMovie();
+  console.log(movie);
 
   return (
     <>

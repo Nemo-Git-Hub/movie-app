@@ -8,8 +8,8 @@ const useMovie = () => {
   useEffect(() => {
     (async () => {
       const result = await fetchMovie();
-      const movies = await result.json();
-      setMovie(movies.results);
+      const movie = await result.json();
+      setMovie(movie.results);
     })();
   }, []);
 
