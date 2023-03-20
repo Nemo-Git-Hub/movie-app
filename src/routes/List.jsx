@@ -12,7 +12,7 @@ function List() {
   //     }`
   //   );
   // }, []);
-  console.log(movies);
+  // console.log(movies);
   // images https://developers.themoviedb.org/3/getting-started/images
   return (
     <>

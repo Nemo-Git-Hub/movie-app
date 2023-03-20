@@ -18,7 +18,7 @@ export default function SwiperMovies({ list }) {
       scrollbar={{ draggable: true }}
     >
       {list.map((movie) => {
-        console.log(movie.title);
+        // console.log(movie.title);
         return (
           <SwiperSlide key={movie.id} movie={movie}>
             <>

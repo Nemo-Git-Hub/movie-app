@@ -9,7 +9,12 @@ import Movie from "./routes/Movie";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <List />,
+    element: (
+      <>
+        <Search />
+        <List />{" "}
+      </>
+    ),
     errorElement: <ErrorPage />,
   },
   {
@@ -22,7 +27,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Search />
+
       <RouterProvider router={router} />
       <Footer />
     </>
