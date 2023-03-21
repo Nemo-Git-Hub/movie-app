@@ -1,5 +1,4 @@
 function Slide({ list, title, moviePosterImg }) {
-  // console.log(list[0]);
   return (
     <>
       <div className="">

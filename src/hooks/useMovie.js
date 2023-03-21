@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import fetchMovie from "../api/requests/fetchMovie";
-// import { fetchMovie } from "../api/routes/Movie";
 
 const useMovie = () => {
   const location = useLocation();

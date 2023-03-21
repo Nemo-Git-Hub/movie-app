@@ -1,11 +1,9 @@
-import { useLocation } from "react-router-dom";
-// import fetchMovie from "../api/requests/fetchMovie";
 import useMovie from "../hooks/useMovie";
-import { BsBookmarkFill } from "react-icons/bs";
+import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
+import { ImList } from "react-icons/im";
 
 export default function Movie() {
   const movie = useMovie();
-  console.log(movie);
 
   if (!movie)
     return (
@@ -97,9 +95,20 @@ export default function Movie() {
   const popularity = (movie.vote_average * 10).toFixed(0);
 
   const yearRelease = movie.release_date.slice(0, 4);
+  const movieLengthHourse = (movie.runtime / 60).toFixed(0);
+  const movieLengthMinuts = movie.runtime % 60;
+  const revenueColor =
+    movie.budget < movie.revenue ? "text-yellow-500" : "text-red-500";
 
-  const genres = movie.genres.join(Object.name, ",");
-  console.log(genres);
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
+  function getGenresMovies() {
+    const genresMovies = movie.genres;
+    let genres = genresMovies.map((movie) => movie.name);
+    return genres.join(", ");
+  }
 
   return (
     <>
@@ -110,53 +119,91 @@ export default function Movie() {
           url(
             ${"https://image.tmdb.org/t/p/w500" + movie.backdrop_path}
           )`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right",
         }}
       >
-        <div className="">
+        <div className="movie-poster">
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             title={movie.title}
             className="imageSlide rounded-xl "
+            // style={{ width: "300px" }}
           />
         </div>
         <div className=" text-base pl-10">
           <h2 className="text-4xl font-bold  ">
             {movie.title} <span className="font-normal">({yearRelease})</span>{" "}
           </h2>
-          <div className="facts flex mb-6">
-            <span>{movie.release_date}</span>
-            <span className="pl-5">{}</span>
-            <span className="pl-5">{movie.runtime} min</span>
-          </div>
+          <div className="facts flex mt-2.5">
+            <span className="min-w-max">{movie.release_date}</span>
 
-          <div className="icons-block"></div>
+            <span className="ml-5 rounded-full bg-white w-1 h-1 my-auto"></span>
+            <span className="min-w-max ml-5">
+              {movieLengthHourse}h {movieLengthMinuts}m
+            </span>
+          </div>
+          <div className="min-w-max mb-6 ">{getGenresMovies()}</div>
+
+          <div className="icons-block flex my-6 ">
+            <div className="relative mr-5 text-green-900">
+              <div
+                className="radial-progress absolute top-0 left-0 bottom-0 right-0"
+                style={{
+                  "--value": 100,
+                  "--size": "4rem",
+                  "--thickness": "4px",
+                }}
+              />
+              <div
+                className="radial-progress text-green-400"
+                style={{
+                  "--value": popularity,
+                  "--size": "4rem",
+                  "--thickness": "4px",
+                }}
+              >
+                <span className="text-white font-bold">{popularity}%</span>
+              </div>
+            </div>
+
+            <button className="btn btn-circle mr-5 my-auto">
+              <ImList />
+            </button>
+            <button className="btn btn-circle mr-5 my-auto">
+              <BsHeartFill />
+            </button>
+            <button className="btn btn-circle mr-5 my-auto">
+              <BsBookmarkFill />
+            </button>
+            <button className="btn btn-circle my-auto">
+              <BsStarFill />
+            </button>
+          </div>
           <div className="header-info">
             <h3 className="text-lg italic">{movie.tagline} </h3>
             <h3 className="my-2.5 text-xl">Overview</h3>
             <p className="text-base">{movie.overview} </p>
+            <h3 className="mt-6 mb-2.5 text-xl font-bold italic">
+              Budget:{" "}
+              <span className="font-normal">
+                {" "}
+                {numberWithSpaces(movie.budget)}{" "}
+              </span>{" "}
+              ${" "}
+            </h3>
+            <h3 className="my-2.5 text-xl font-bold italic">
+              Revenue:{" "}
+              <span className={revenueColor}>
+                {" "}
+                {numberWithSpaces(movie.revenue)}{" "}
+              </span>{" "}
+              ${" "}
+            </h3>
           </div>
         </div>
       </div>
-
-      {/* <button className="btn btn-circle">
-        <BsBookmarkFill />
-      </button>
-
-      <div className="relative">
-        <div
-          className="radial-progress absolute top-0 left-0 bottom-0 right-0 text-cyan-800"
-          style={{ "--value": 100 }}
-        />
-        <div
-          className="radial-progress text-primary"
-          style={{ "--value": popularity }}
-        >
-          {popularity}%
-        </div>
-      </div> */}
     </>
   );
 }
