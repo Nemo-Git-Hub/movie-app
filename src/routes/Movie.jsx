@@ -1,96 +1,16 @@
 import useMovie from "../hooks/useMovie";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
+import LoadingWait from "../components/LoadingWait";
+
+function numberWithSpaces(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
 export default function Movie() {
   const movie = useMovie();
 
-  if (!movie)
-    return (
-      <div
-        aria-label="Loading... Please wait..."
-        role="status"
-        class="flex items-center space-x-2"
-      >
-        <svg class="h-6 w-6 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-          <line
-            x1="128"
-            y1="32"
-            x2="128"
-            y2="64"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="195.9"
-            y1="60.1"
-            x2="173.3"
-            y2="82.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="224"
-            y1="128"
-            x2="192"
-            y2="128"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="195.9"
-            y1="195.9"
-            x2="173.3"
-            y2="173.3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="128"
-            y1="224"
-            x2="128"
-            y2="192"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="60.1"
-            y1="195.9"
-            x2="82.7"
-            y2="173.3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="32"
-            y1="128"
-            x2="64"
-            y2="128"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-          <line
-            x1="60.1"
-            y1="60.1"
-            x2="82.7"
-            y2="82.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          ></line>
-        </svg>
-        <span class="text-xl font-medium text-gray-500">
-          Loading... Please wait...
-        </span>
-      </div>
-    );
+  if (!movie) return <LoadingWait />;
 
   const popularity = (movie.vote_average * 10).toFixed(0);
 
@@ -98,17 +18,11 @@ export default function Movie() {
   const movieLengthHourse = (movie.runtime / 60).toFixed(0);
   const movieLengthMinuts = movie.runtime % 60;
   const revenueColor =
-    movie.budget < movie.revenue ? "text-yellow-500" : "text-red-500";
+    movie.budget < movie.revenue
+      ? "text-yellow-500 mx-1.5"
+      : "text-red-500 mx-1.5";
 
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
-
-  function getGenresMovies() {
-    const genresMovies = movie.genres;
-    let genres = genresMovies.map((movie) => movie.name);
-    return genres.join(", ");
-  }
+  const genresMovie = movie.genres.map((movie) => movie.name).join(", ");
 
   return (
     <>
@@ -129,7 +43,6 @@ export default function Movie() {
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             title={movie.title}
             className="imageSlide rounded-xl "
-            // style={{ width: "300px" }}
           />
         </div>
         <div className=" text-base pl-10">
@@ -144,7 +57,7 @@ export default function Movie() {
               {movieLengthHourse}h {movieLengthMinuts}m
             </span>
           </div>
-          <div className="min-w-max mb-6 ">{getGenresMovies()}</div>
+          <div className="min-w-max mb-6 ">{genresMovie}</div>
 
           <div className="icons-block flex my-6 ">
             <div className="relative mr-5 text-green-900">
@@ -186,20 +99,18 @@ export default function Movie() {
             <h3 className="my-2.5 text-xl">Overview</h3>
             <p className="text-base">{movie.overview} </p>
             <h3 className="mt-6 mb-2.5 text-xl font-bold italic">
-              Budget:{" "}
-              <span className="font-normal">
-                {" "}
-                {numberWithSpaces(movie.budget)}{" "}
-              </span>{" "}
-              ${" "}
+              Budget:
+              <span className="font-normal mx-1.5">
+                {numberWithSpaces(movie.budget)}
+              </span>
+              $
             </h3>
             <h3 className="my-2.5 text-xl font-bold italic">
-              Revenue:{" "}
+              Revenue:
               <span className={revenueColor}>
-                {" "}
-                {numberWithSpaces(movie.revenue)}{" "}
-              </span>{" "}
-              ${" "}
+                {numberWithSpaces(movie.revenue)}
+              </span>
+              $
             </h3>
           </div>
         </div>

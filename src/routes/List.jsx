@@ -10,9 +10,7 @@ function List() {
     <>
       <div className="flex justify-center py-7">
         <div className="container ">
-          <div className="">
-            <Swiper list={movies} />
-          </div>
+          <Swiper list={movies} />
         </div>
       </div>
     </>
