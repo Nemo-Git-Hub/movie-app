@@ -1,7 +1,7 @@
 import useMovie from "../hooks/useMovie";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
-import LoadingWait from "../components/LoadingWait";
+import Spinner from "../components/Spinner";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -10,7 +10,7 @@ function numberWithSpaces(x) {
 export default function Movie() {
   const movie = useMovie();
 
-  if (!movie) return <LoadingWait />;
+  if (!movie) return <Spinner />;
 
   const popularity = (movie.vote_average * 10).toFixed(0);
 
@@ -42,7 +42,7 @@ export default function Movie() {
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             title={movie.title}
-            className="imageSlide rounded-xl "
+            className="imageSlide rounded-xl min-w-[300px]"
           />
         </div>
         <div className=" text-base pl-10">
