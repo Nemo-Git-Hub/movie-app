@@ -1,7 +1,8 @@
+import Spinner from "../components/Spinner";
 import useMovie from "../hooks/useMovie";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
-import Spinner from "../components/Spinner";
+import Credits from "../components/Credits";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -115,6 +116,7 @@ export default function Movie() {
           </div>
         </div>
       </div>
+      <Credits />
     </>
   );
 }
