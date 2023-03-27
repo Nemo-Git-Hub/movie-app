@@ -1,8 +1,10 @@
 import Spinner from "../components/Spinner";
 import useMovie from "../hooks/useMovie";
+import useCredits from "../hooks/useCredits";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
 import Credits from "../components/Credits";
+import Swiper from "../components/Swiper";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -10,6 +12,8 @@ function numberWithSpaces(x) {
 
 export default function Movie() {
   const movie = useMovie();
+  const credits = useCredits();
+  console.log(credits);
 
   if (!movie) return <Spinner />;
 
@@ -115,6 +119,10 @@ export default function Movie() {
             </h3>
           </div>
         </div>
+      </div>
+      <div className="px-10 py-8">
+        <h3 className="font-semibold text-2xl mb-5">Top Billed Cast</h3>
+        {/* <Swiper list={credits} /> */}
       </div>
       <Credits />
     </>

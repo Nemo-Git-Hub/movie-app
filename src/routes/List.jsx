@@ -4,6 +4,7 @@ import useMovies from "../hooks/useMovies";
 
 function List() {
   const movies = useMovies();
+  console.log(movies);
 
   if (!movies) return <Spinner />;
 
