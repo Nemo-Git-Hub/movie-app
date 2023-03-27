@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { DateTime } from "luxon";
+// import { DateTime } from "luxon";
 
 import "swiper/css";
 
-export default function SwiperMovies({ list }) {
+export default function SwiperMovies({ list, releasDate }) {
   // const windowOuterWidth = window.outerWidth;
   const quantitySlides =
     window.outerWidth > 768
@@ -23,9 +23,9 @@ export default function SwiperMovies({ list }) {
       // slidesPerView={7.7} - попробовать рассчитать с помощью calc()
     >
       {list.map((movie) => {
-        const releasDate = DateTime.fromISO(movie.release_date).toFormat(
-          "dd LLL yyyy"
-        );
+        // const releasDate = DateTime.fromISO(movie.release_date).toFormat(
+        //   "dd LLL yyyy"
+        // );
 
         return (
           <SwiperSlide key={movie.id} movie={movie}>
