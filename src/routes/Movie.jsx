@@ -10,6 +10,10 @@ function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+const renderCredit = (credit) => (
+  <div className=" h-60">Credit item {credit.id}</div>
+);
+
 export default function Movie() {
   const movie = useMovie();
   const credits = useCredits();
@@ -122,7 +126,7 @@ export default function Movie() {
       </div>
       <div className="px-10 py-8">
         <h3 className="font-semibold text-2xl mb-5">Top Billed Cast</h3>
-        {/* <Swiper list={credits} /> */}
+        <Swiper list={credits.cast} renderSlide={renderCredit} />
       </div>
       <Credits />
     </>
