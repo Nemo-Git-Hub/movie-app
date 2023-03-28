@@ -10,9 +10,25 @@ function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-const renderCredit = (credit) => (
-  <div className=" h-60">Credit item {credit.id}</div>
-);
+const renderCredit = (credit) => {
+  // <div className=" h-60">Credit item {credit.id}</div>
+  console.log(credit);
+  return (
+    <div className="card card-compact min-w-[150px]  bg-base-100 shadow-xl">
+      <figure>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
+          alt={credit.name}
+          className=""
+        />
+      </figure>
+      <div className="card-body h-36">
+        <h2 className="card-title">{credit.name}</h2>
+        <h3 className="card-actions">{credit.character}</h3>
+      </div>
+    </div>
+  );
+};
 
 export default function Movie() {
   const movie = useMovie();
@@ -32,6 +48,8 @@ export default function Movie() {
       : "text-red-500 mx-1.5";
 
   const genresMovie = movie.genres.map((movie) => movie.name).join(", ");
+
+  if (!credits) return <Spinner />;
 
   return (
     <>
