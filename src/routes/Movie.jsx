@@ -10,21 +10,18 @@ function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-const renderCredit = (credit) => {
-  // <div className=" h-60">Credit item {credit.id}</div>
-  console.log(credit);
+const renderCast = (cast) => {
   return (
     <div className="card card-compact min-w-[150px]  bg-base-100 shadow-xl">
       <figure>
         <img
-          src={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
-          alt={credit.name}
-          className=""
+          src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+          alt={cast.name}
         />
       </figure>
       <div className="card-body h-36">
-        <h2 className="card-title">{credit.name}</h2>
-        <h3 className="card-actions">{credit.character}</h3>
+        <h2 className="card-title">{cast.name}</h2>
+        <h3 className="card-actions">{cast.character}</h3>
       </div>
     </div>
   );
@@ -33,7 +30,6 @@ const renderCredit = (credit) => {
 export default function Movie() {
   const movie = useMovie();
   const credits = useCredits();
-  console.log(credits);
 
   if (!movie) return <Spinner />;
 
@@ -144,7 +140,7 @@ export default function Movie() {
       </div>
       <div className="px-10 py-8">
         <h3 className="font-semibold text-2xl mb-5">Top Billed Cast</h3>
-        <Swiper list={credits.cast} renderSlide={renderCredit} />
+        <Swiper list={credits.cast} renderSlide={renderCast} />
       </div>
       <Credits />
     </>
