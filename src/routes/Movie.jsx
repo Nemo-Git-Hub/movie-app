@@ -1,14 +1,35 @@
+import Spinner from "../components/Spinner";
 import useMovie from "../hooks/useMovie";
+import useCredits from "../hooks/useCredits";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
-import Spinner from "../components/Spinner";
+import Credits from "../components/Credits";
+import Swiper from "../components/Swiper";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+const renderCast = (cast) => {
+  return (
+    <div className="card card-compact min-w-[150px]  bg-base-100 shadow-xl">
+      <figure>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+          alt={cast.name}
+        />
+      </figure>
+      <div className="card-body h-36">
+        <h2 className="card-title">{cast.name}</h2>
+        <h3 className="card-actions">{cast.character}</h3>
+      </div>
+    </div>
+  );
+};
+
 export default function Movie() {
   const movie = useMovie();
+  const credits = useCredits();
 
   if (!movie) return <Spinner />;
 
@@ -23,6 +44,8 @@ export default function Movie() {
       : "text-red-500 mx-1.5";
 
   const genresMovie = movie.genres.map((movie) => movie.name).join(", ");
+
+  if (!credits) return <Spinner />;
 
   return (
     <>
@@ -115,6 +138,11 @@ export default function Movie() {
           </div>
         </div>
       </div>
+      <div className="px-10 py-8">
+        <h3 className="font-semibold text-2xl mb-5">Top Billed Cast</h3>
+        <Swiper list={credits.cast} renderSlide={renderCast} />
+      </div>
+      <Credits />
     </>
   );
 }

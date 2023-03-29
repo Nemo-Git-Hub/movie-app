@@ -1,40 +1,42 @@
-import { Link } from "react-router-dom";
 import { A11y } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-export default function SwiperMovies({ list }) {
+export default function Swiper({ list, renderSlide }) {
+
   return (
-    <Swiper
+    <ReactSwiper
       className="swiperShadow"
       modules={[A11y]}
       spaceBetween={30}
-      slidesPerView={7.7}
+      breakpoints={{
+        280: {
+          slidesPerView: 1.5,
+        },
+        360: {
+          slidesPerView: 2,
+        },
+        640: {
+          slidesPerView: 3.5,
+        },
+        768: {
+          slidesPerView: 4.3,
+        },
+        1024: {
+          slidesPerView: 5.7,
+        },
+        1280: {
+          slidesPerView: 6.8,
+        },
+        1536: {
+          slidesPerView: 8.5,
+        },
+      }}
     >
-      {list.map((movie) => {
-        return (
-          <SwiperSlide key={movie.id} movie={movie}>
-            <>
-              <div>
-                <Link to={`/movie/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    title={movie.title}
-                    className="imageSlide rounded-3xl max-h-56"
-                  />
-                </Link>
-
-                <div className="titleSlide text-base font-bold pt-6 px-2">
-                  <Link to={`/movie/${movie.id}`} title={movie.title}>
-                    {movie.title}
-                  </Link>
-                </div>
-              </div>
-            </>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+      {list.map((listItem) => (
+        <SwiperSlide key={listItem.id}>{renderSlide(listItem)}</SwiperSlide>
+      ))}
+    </ReactSwiper>
   );
 }
