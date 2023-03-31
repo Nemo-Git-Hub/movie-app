@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./routes/error-page";
 import Movie from "./routes/Movie";
 import Home from "./routes/Home";
+import Credits from "./components/Credits";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/movie/:id",
     element: <Movie />,
+  },
+  {
+    path: "/movie/:id/credits",
+    element: <Credits />,
   },
 ]);
 

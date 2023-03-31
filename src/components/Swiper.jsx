@@ -4,7 +4,6 @@ import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 export default function Swiper({ list, renderSlide }) {
-
   return (
     <ReactSwiper
       className="swiperShadow"
@@ -35,7 +34,9 @@ export default function Swiper({ list, renderSlide }) {
       }}
     >
       {list.map((listItem) => (
-        <SwiperSlide key={listItem.id}>{renderSlide(listItem)}</SwiperSlide>
+        <>
+          <SwiperSlide key={listItem.id}>{renderSlide(listItem)}</SwiperSlide>
+        </>
       ))}
     </ReactSwiper>
   );
