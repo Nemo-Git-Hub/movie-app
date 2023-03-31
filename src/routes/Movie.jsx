@@ -11,9 +11,9 @@ function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-const renderCast = (cast) => {
-  const credits = useCredits();
-  console.log(credits);
+const renderCast = (cast, credits) => {
+  // const credits = useCredits();
+  // console.log(credits);
   if (cast.isLastItem) {
     if (!credits) return <Spinner />;
     return (
@@ -161,6 +161,7 @@ export default function Movie() {
         <Swiper
           list={[...credits.cast.slice(0, 9), { isLastItem: true }]}
           renderSlide={renderCast}
+          credits={credits}
         />
       </div>
     </>
