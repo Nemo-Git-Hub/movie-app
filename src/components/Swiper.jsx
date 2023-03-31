@@ -3,11 +3,10 @@ import { Swiper as ReactSwiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-export default function Swiper({ list, renderSlide, credits }) {
+export default function Swiper({ list, renderSlide, renderSlideProps }) {
   return (
     <ReactSwiper
       className="swiperShadow"
-      credits={credits}
       modules={[A11y]}
       spaceBetween={30}
       breakpoints={{
@@ -35,9 +34,9 @@ export default function Swiper({ list, renderSlide, credits }) {
       }}
     >
       {list.map((listItem) => (
-        <>
-          <SwiperSlide key={listItem.id}>{renderSlide(listItem)}</SwiperSlide>
-        </>
+        <SwiperSlide key={listItem.id}>
+          {renderSlide(listItem, renderSlideProps)}
+        </SwiperSlide>
       ))}
     </ReactSwiper>
   );

@@ -3,30 +3,22 @@ import useMovie from "../hooks/useMovie";
 import useCredits from "../hooks/useCredits";
 import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
-import Credits from "../components/Credits";
 import Swiper from "../components/Swiper";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-const renderCast = (cast, credits) => {
-  // const credits = useCredits();
-  // console.log(credits);
+const renderCast = (cast, props) => {
+  console.log({ cast, props });
   if (cast.isLastItem) {
-    if (!credits) return <Spinner />;
     return (
-      <>
-        <div className="flex card card-compact min-w-[150px] m-5 h-[369px] max-h-min text-center justify-center bg-base-100 shadow-xl font-bold">
-          {/* Show more */}
-          {/* </div> */}
-          {/* <div className="titleSlide text-base font-bold pt-6 px-2"> */}
-          <Link to={`/movie/${credits.id}/credits`} title="Show All">
-            Show All
-          </Link>
-        </div>
-      </>
+      <div className="flex card card-compact min-w-[150px] m-5 h-[369px] max-h-min text-center justify-center bg-base-100 shadow-xl font-bold">
+        <Link to={`/movie/${props.movieId}/credits`} title="Show All">
+          Show All
+        </Link>
+      </div>
     );
   }
   return (
@@ -48,6 +40,8 @@ const renderCast = (cast, credits) => {
 export default function Movie() {
   const movie = useMovie();
   const credits = useCredits();
+
+  const { id } = useParams();
 
   if (!movie) return <Spinner />;
 
@@ -159,9 +153,12 @@ export default function Movie() {
       <div className="px-10 py-8">
         <h3 className="font-semibold text-2xl mb-5">Top Billed Cast</h3>
         <Swiper
-          list={[...credits.cast.slice(0, 9), { isLastItem: true }]}
+          list={[
+            ...credits.cast.slice(0, 9),
+            { isLastItem: true, id: "cast-last-item" },
+          ]}
           renderSlide={renderCast}
-          credits={credits}
+          renderSlideProps={{ movieId: id }}
         />
       </div>
     </>
