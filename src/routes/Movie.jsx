@@ -5,6 +5,7 @@ import { BsBookmarkFill, BsHeartFill, BsStarFill } from "react-icons/bs";
 import { ImList } from "react-icons/im";
 import Swiper from "../components/Swiper";
 import { Link, useParams } from "react-router-dom";
+import PageLayout from "../components/layouts/PageLayout";
 
 function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -41,7 +42,7 @@ export default function Movie() {
   const movie = useMovie();
   const credits = useCredits();
 
-  const { id } = useParams();
+  const { movieId } = useParams();
 
   if (!movie) return <Spinner />;
 
@@ -60,7 +61,7 @@ export default function Movie() {
   if (!credits) return <Spinner />;
 
   return (
-    <>
+    <PageLayout>
       <div
         className="flex py-8 px-10 text-white"
         style={{
@@ -158,9 +159,9 @@ export default function Movie() {
             { isLastItem: true, id: "cast-last-item" },
           ]}
           renderSlide={renderCast}
-          renderSlideProps={{ movieId: id }}
+          renderSlideProps={{ movieId }}
         />
       </div>
-    </>
+    </PageLayout>
   );
 }

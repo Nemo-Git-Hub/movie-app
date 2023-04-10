@@ -18,11 +18,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/movie/:id",
+    path: "/movie/:movieId",
     element: <Movie />,
   },
   {
-    path: "/movie/:id/credits",
+    path: "/movie/:movieId/credits",
     element: <Credits />,
   },
 ]);
@@ -30,10 +30,10 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <RouterProvider router={router} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
