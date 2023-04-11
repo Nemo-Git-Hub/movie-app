@@ -1,6 +1,3 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./routes/error-page";
 import Movie from "./routes/Movie";
@@ -30,10 +27,7 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-      {/* <Header /> */}
-
       <RouterProvider router={router} />
-      {/* <Footer /> */}
     </>
   );
 };

@@ -12,7 +12,6 @@ function numberWithSpaces(x) {
 }
 
 const renderCast = (cast, props) => {
-  console.log({ cast, props });
   if (cast.isLastItem) {
     return (
       <div className="flex card card-compact min-w-[150px] m-5 h-[369px] max-h-min text-center justify-center bg-base-100 shadow-xl font-bold">
@@ -81,9 +80,9 @@ export default function Movie() {
             className="imageSlide rounded-xl min-w-[300px]"
           />
         </div>
-        <div className=" text-base pl-10">
-          <h2 className="text-4xl font-bold  ">
-            {movie.title} <span className="font-normal">({yearRelease})</span>{" "}
+        <div className="text-base pl-10">
+          <h2 className="text-4xl font-bold">
+            {movie.title} <span className="font-normal">({yearRelease})</span>
           </h2>
           <div className="facts flex mt-2.5">
             <span className="min-w-max">{movie.release_date}</span>
