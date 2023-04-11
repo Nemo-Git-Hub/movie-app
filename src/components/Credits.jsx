@@ -56,7 +56,7 @@ export default function Credits() {
               profilePath={castItem.profile_path}
               name={castItem.name}
               participation={castItem.character}
-            ></CardPersonMini>
+            />
           ))}
         </div>
         <div className="column-crew">
@@ -70,7 +70,7 @@ export default function Credits() {
               profilePath={crewItem.profile_path}
               name={crewItem.name}
               participation={crewItem.job}
-            ></CardPersonMini>
+            />
           ))}
         </div>
       </div>

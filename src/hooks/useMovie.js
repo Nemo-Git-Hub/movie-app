@@ -8,7 +8,6 @@ const useMovie = () => {
 
   useEffect(() => {
     (async () => {
-      // const id = location.pathname.split("/").at(-1);
       const result = await fetchMovie(movieId);
       const movie = await result.json();
       setMovie(movie);
