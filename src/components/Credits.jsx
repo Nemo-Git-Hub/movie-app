@@ -53,6 +53,7 @@ export default function Credits() {
           {credits.cast.map((castItem) => (
             <CardPersonMini
               key={castItem.credit_id}
+              id={castItem.id}
               profilePath={castItem.profile_path}
               name={castItem.name}
               participation={castItem.character}
@@ -67,6 +68,7 @@ export default function Credits() {
           {credits.crew.map((crewItem) => (
             <CardPersonMini
               key={crewItem.credit_id}
+              id={crewItem.id}
               profilePath={crewItem.profile_path}
               name={crewItem.name}
               participation={crewItem.job}

@@ -23,16 +23,18 @@ const renderCast = (cast, props) => {
   }
   return (
     <div className="card card-compact min-w-[150px] m-5 bg-base-100 shadow-xl">
-      <figure>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
-          alt={cast.name}
-        />
-      </figure>
-      <div className="card-body h-36">
-        <h2 className="card-title">{cast.name}</h2>
-        <h3 className="card-actions">{cast.character}</h3>
-      </div>
+      <Link to={`/person/${cast.id}`}>
+        <figure>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+            alt={cast.name}
+          />
+        </figure>
+        <div className="card-body h-36">
+          <h2 className="card-title">{cast.name}</h2>
+          <h3 className="card-actions">{cast.character}</h3>
+        </div>
+      </Link>
     </div>
   );
 };
