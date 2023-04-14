@@ -7,8 +7,6 @@ export default function CardPersonMini({
   name,
   participation,
 }) {
-  console.log(id);
-
   const urlFotoPerson = !profilePath
     ? photoNull
     : `https://image.tmdb.org/t/p/w66_and_h66_face/${profilePath}`;
