@@ -3,6 +3,7 @@ import ErrorPage from "./routes/error-page";
 import Movie from "./routes/Movie";
 import Home from "./routes/Home";
 import Credits from "./components/Credits";
+import Person from "./routes/Person";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/movie/:movieId/credits",
     element: <Credits />,
+  },
+  {
+    path: "/person/:personId",
+    element: <Person />,
   },
 ]);
 
