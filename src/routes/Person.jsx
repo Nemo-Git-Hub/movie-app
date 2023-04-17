@@ -5,11 +5,10 @@ import PageLayout from "../components/layouts/PageLayout";
 import usePerson from "../hooks/usePerson";
 import usePersonCredits from "../hooks/usePersonCredits";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import ExpandedText from "../components/ExpandedText";
 
 const renderMovie = (movie) => {
-  const releseDate = DateTime.fromISO(movie.release_date).toFormat(
+  const releaseDate = DateTime.fromISO(movie.release_date).toFormat(
     "dd LLL yyyy"
   );
   return (
@@ -28,87 +27,62 @@ const renderMovie = (movie) => {
             {movie.title}
           </Link>
         </div>
-        <div className="subtitleSlide text-base px-2">{releseDate}</div>
+        <div className="subtitleSlide text-base px-2">{releaseDate}</div>
       </div>
     </>
   );
 };
 
 export default function Person() {
-  const [isCollapseBio, setIsCollapseBio] = useState(false);
   const person = usePerson();
   const personCredits = usePersonCredits();
-  console.log(isCollapseBio);
-
-  const toggleIsCollapseBio = (isCollapseBio) =>
-    setIsCollapseBio(!isCollapseBio);
-
-  const briefFullText = isCollapseBio ? "h-auto" : "h-12 overflow-hidden";
 
   if (!person || !personCredits) return <Spinner />;
 
-  const urlFotoPerson = `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${person.profile_path}`;
-  const gender = person.gender === 1 ? "Female" : "Male";
+  const urlPhotoPerson = `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${person.profile_path}`;
 
   return (
     <PageLayout>
-      <div className="flex sm:flex-row flex-col w-screen">
+      <div className="flex sm:flex-row flex-col mb-4">
         <div className="auto-cols-min pl-5">
-          <img src={urlFotoPerson} className="rounded-lg min-w-[300px]" />
+          <img src={urlPhotoPerson} className="rounded-lg min-w-[300px]" />
           <div className="py-8">
-            <h3 className="text-xl font-bold px-5">Personal Info</h3>
-            <div className="pt-2.5 px-5">
-              <p>
-                <strong>Known For</strong>
-              </p>
+            <h3 className="text-xl font-bold">Personal Info</h3>
+            <div className="pt-2.5">
+              <p className="font-bold">Known For</p>
               <p> {person.known_for_department}</p>
             </div>
-            <div className="pt-2.5 px-5">
-              <p>
-                <strong>Known Cast Movies</strong>
-              </p>
+            <div className="pt-2.5">
+              <p className="font-bold">Known Cast Movies</p>
               <p> {personCredits.cast.length}</p>
             </div>
-            <div className="pt-2.5 px-5">
-              <p>
-                <strong>Gender</strong>
-              </p>
-              <p>{gender} </p>
+            <div className="pt-2.5">
+              <p className="font-bold">Gender</p>
+              <p>{person.gender === 1 ? "Female" : "Male"}</p>
             </div>
-            <div className="pt-2.5 px-5">
-              <p>
-                <strong>Birthdate</strong>
-              </p>
-              <p> {person.birthday}</p>
-            </div>
-            <div className="pt-2.5 px-5">
-              <p>
-                <strong>Place of Birth</strong>
-              </p>
-              <p> {person.place_of_birth}</p>
-            </div>
+            {person.birthday && (
+              <div className="pt-2.5">
+                <p className="font-bold">Birthday</p>
+                <p>{person.birthday}</p>
+              </div>
+            )}
+            {person.place_of_birth && (
+              <div className="pt-2.5">
+                <p className="font-bold">Place of Birth</p>
+                <p>{person.place_of_birth}</p>
+              </div>
+            )}
           </div>
         </div>
-
         <div className="pl-5">
           <h2 className="font-bold text-4xl mb-5">{person.name}</h2>
           <h3 className="mb-2 text-xl font-bold">Biography</h3>
-          <ExpandedText briefFullText={briefFullText} person={person} />
-          <button
-            className="text-blue-700 font-bold top-[520px]"
-            onClick={() => {
-              setIsCollapseBio(!isCollapseBio);
-            }}
-          >
-            More/Less info {">>>"}
-          </button>
+          <ExpandedText text={person.biography} />
           <h3 className="my-8 text-xl font-bold">Known For</h3>
-          <div className="flex w-[66vw] sm:w-screen">
-            <Swiper
-              list={personCredits.cast.slice(0, 8)}
-              renderSlide={renderMovie}
-            />
-          </div>
+          <Swiper
+            list={personCredits.cast.slice(0, 8)}
+            renderSlide={renderMovie}
+          />
         </div>
       </div>
     </PageLayout>
