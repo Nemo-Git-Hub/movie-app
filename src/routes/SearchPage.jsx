@@ -1,31 +1,48 @@
 import { useEffect, useState } from "react";
 import fetchSearch from "../api/requests/fetchSearch";
 import PageLayout from "../components/layouts/PageLayout";
-import Search from "../components/Search";
+import { useSearchParams } from "react-router-dom";
+import { useDebounce } from "react-use";
 
-export default function SearchPage({ query }) {
+export default function SearchPage() {
   const [movies, setMovies] = useState({});
-  console.log("querySearchPage = ", query);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query");
+
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+
+  useDebounce(
+    () => {
+      console.log("useDebounce query", query);
+      setDebouncedQuery(query);
+    },
+    2000, // 2 seconds
+    [query] // Only re-call effect if val changes
+  );
 
   useEffect(() => {
     (async () => {
-      const result = await fetchSearch(query);
+      const result = await fetchSearch(debouncedQuery);
       const movies = await result.json();
-      // setMovies(movies.results);
       setMovies(movies);
     })();
-  }, []);
-  console.log(movies);
+  }, [debouncedQuery]);
+
+  console.log({ movies, query, debouncedQuery });
 
   return (
     <PageLayout>
       <input
         type="text"
         placeholder="Type here"
-        className="input input-ghost w-full max-w-xs"
+        className="input input-bordered w-full max-w-xs"
+        value={query || ""}
+        onChange={(e) => setSearchParams({ query: e.target.value })}
       />
 
-      <div className="card w-96 bg-base-100 shadow-xl">
+      {/* TO: To be continues... */}
+      {/* <div className="card w-96 bg-base-100 shadow-xl">
         <figure>
           <img
             src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -40,7 +57,6 @@ export default function SearchPage({ query }) {
           </div>
         </div>
       </div>
-
       <div className="pagination btn-group">
         <button className="btn">1</button>
         <button className="btn">2</button>
@@ -54,7 +70,7 @@ export default function SearchPage({ query }) {
         >
           Next →
         </button>
-      </div>
+      </div> */}
     </PageLayout>
   );
 }
