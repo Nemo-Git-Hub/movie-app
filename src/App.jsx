@@ -4,6 +4,7 @@ import Movie from "./routes/Movie";
 import Home from "./routes/Home";
 import Credits from "./components/Credits";
 import Person from "./routes/Person";
+import SearchPage from "./routes/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/person/:personId",
     element: <Person />,
+  },
+  {
+    path: "/search",
+    element: <SearchPage />,
   },
 ]);
 

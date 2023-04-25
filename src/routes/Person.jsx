@@ -43,9 +43,9 @@ export default function Person() {
 
   return (
     <PageLayout>
-      <div className="flex sm:flex-row flex-col mb-4">
-        <div className="auto-cols-min pl-5">
-          <img src={urlPhotoPerson} className="rounded-lg min-w-[300px]" />
+      <div className="flex flex-wrap flex-col sm:flex-row mb-4">
+        <div className="w-full sm:w-1/5 xl:w-1/6">
+          <img src={urlPhotoPerson} className="rounded-lg w-full" />
           <div className="py-8">
             <h3 className="text-xl font-bold">Personal Info</h3>
             <div className="pt-2.5">
@@ -74,15 +74,17 @@ export default function Person() {
             )}
           </div>
         </div>
-        <div className="pl-5">
+        <div className="w-full sm:w-4/5 xl:w-5/6 pl-0 sm:pl-3 pt-0 sm:pt-3">
           <h2 className="font-bold text-4xl mb-5">{person.name}</h2>
           <h3 className="mb-2 text-xl font-bold">Biography</h3>
           <ExpandedText text={person.biography} />
           <h3 className="my-8 text-xl font-bold">Known For</h3>
-          <Swiper
-            list={personCredits.cast.slice(0, 8)}
-            renderSlide={renderMovie}
-          />
+          <div className="w-full">
+            <Swiper
+              list={personCredits.cast.slice(0, 8)}
+              renderSlide={renderMovie}
+            />
+          </div>
         </div>
       </div>
     </PageLayout>
