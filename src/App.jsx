@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./routes/error-page";
-import Movie from "./routes/Movie";
+import Credits from "./routes/Credits";
+import ErrorPage from "./routes/ErrorPage";
 import Home from "./routes/Home";
-import Credits from "./components/Credits";
+import Movie from "./routes/Movie";
 import Person from "./routes/Person";
 import SearchPage from "./routes/SearchPage";
 
