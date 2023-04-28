@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+// import { redirect } from "react-router-dom";
 import Swiper from "../components/Swiper";
 import PageLayout from "../components/layouts/PageLayout";
 import CardMovie from "../components/swiperCards/CardMovie";
@@ -12,6 +13,8 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleSearch = () => navigate(`/search?query=${query}`);
+  // const handleSearch = () => redirect(`/search?query=${query}`);
+  // const handleSearch = () => redirect(`/search`);
 
   if (!movies) return <Spinner />;
 

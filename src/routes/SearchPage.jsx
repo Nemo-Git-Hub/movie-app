@@ -9,12 +9,14 @@ export default function SearchPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
+  console.log("const query =", query);
+  console.log("searchParams = ", searchParams);
 
   const [debouncedQuery, setDebouncedQuery] = useState(query);
 
   useDebounce(
     () => {
-      console.log("useDebounce query", query);
+      console.log("useDebounce query = ", query);
       setDebouncedQuery(query);
     },
     2000, // 2 seconds

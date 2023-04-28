@@ -5,6 +5,7 @@ import Home from "./routes/Home";
 import Movie from "./routes/Movie";
 import Person from "./routes/Person";
 import SearchPage from "./routes/SearchPage";
+import SearchPage2 from "./routes/SearchPage2";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <SearchPage />,
+  },
+  {
+    path: "/search2",
+    element: <SearchPage2 />,
   },
 ]);
 
