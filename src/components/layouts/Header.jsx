@@ -22,7 +22,7 @@ function Header() {
   );
 
   useEffect(() => {
-    debouncedValue && navigate(`/search2?${debouncedValue}`);
+    debouncedValue && navigate(`/search2?query=${debouncedValue}`);
   }, [debouncedValue]);
 
   console.log("debouncedValue=", debouncedValue);
