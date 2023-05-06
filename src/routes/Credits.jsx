@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useCredits from "../hooks/useCredits";
 import useMovie from "../hooks/useMovie";
-import CardPersonMini from "./CardPersonMini";
-import Spinner from "./Spinner";
-import PageLayout from "./layouts/PageLayout";
+import CardPersonMini from "../components/swiperCards/CardPersonMini";
+import Spinner from "../components/Spinner";
+import PageLayout from "../components/layouts/PageLayout";
 
 export default function Credits() {
   const movie = useMovie();
