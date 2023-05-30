@@ -64,12 +64,12 @@ export default function SearchPage2() {
                       alt="Poster"
                     />
                   </Link>
-                  <div className="card-body py-4 gap-0">
+                  <div className="card-body py-4 gap-0 truncate">
                     <Link to={`/movie/${movie.id}`}>
                       <h2 className="card-title">{movie.title}</h2>
                     </Link>
                     <div className="text-gray-500">{releaseDate}</div>
-                    <p> {movie.overview.slice(0, 256)}... </p>
+                    <p className="truncate">{movie.overview.slice(0, 120)}</p>
                   </div>
                 </div>
               </>
@@ -82,8 +82,8 @@ export default function SearchPage2() {
         <button className="btn">1</button>
         <button className="btn">2</button>
         <button className="btn btn-disabled">...</button>
-        <button className="btn">99</button>
-        <button className="btn">100</button>
+        <button className="btn">{resultSearchQuery.total_pages - 1}</button>
+        <button className="btn">{resultSearchQuery.total_pages}</button>
         <button
           className="btn next_page"
           rel="next"
